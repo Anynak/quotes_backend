@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  app:
+    #build: ./
+    image: demiurgav/quotes_backend:quotes_backend
+    container_name: quotes_backend
+
+    ports:
+      - "8080:8080"
+    environment:
+      FEIGN_CONFIG_NAME: quotes
+      FEIGN_CONFIG_URL: quotes:8080
+

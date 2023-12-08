@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.cameleoon'
+version = '0.0.1'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootStarterVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-web:${springBootStarterVersion}"
+	implementation "org.springframework.boot:spring-boot-starter-validation:${springBootStarterVersion}"
+
+	runtimeOnly "com.h2database:h2:${h2Version}"
+
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${openapiStarterWebmvcVersion}"
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
